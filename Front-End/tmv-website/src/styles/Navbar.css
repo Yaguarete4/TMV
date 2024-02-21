@@ -1,0 +1,240 @@
+.navbar {
+    display: flex;
+    background-color: #FDFEFF;
+    flex-direction: column;
+}
+
+.navbar__desktop {
+    display: flex;
+    flex-direction: column;
+}
+
+.navbar__desktop > div {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 7px 15px;
+}
+
+.navbar__desktop::after {
+    content: "";
+    display: flex;
+    background-color: gray;
+    height: 12px;
+    width: 100%;
+    margin-bottom: 3px;
+}
+
+.navbar__mobile {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding: 0 15px;
+    background-color: #F58634;
+}
+
+.navbar__mobile--onsearch-input {
+    grid-template-columns: 1fr 2fr 1fr;
+}
+
+.navbar__utilities {
+    display: flex;
+    flex-direction: row;
+    min-width: fit-content;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar__utilities > * {
+    min-width: fit-content;
+}
+
+.navbar__mobile > ul {
+    justify-content: space-between;
+    align-items: flex-end;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    padding: 10px 0;
+    gap: 30px;
+    grid-column: 2 / 2;
+}
+
+.navbar__mobile > ul > li {
+    list-style: none;
+}
+
+.navbar__mobile > ul > li > * {
+    flex-direction: column;
+    align-items: center;
+    min-width: 86px;
+}
+
+.navbar__mobile > ul > li > a {
+    display: flex;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: .8rem;
+    gap: 1px;
+}
+
+.navbar__desktop-burger-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: .8rem;
+    gap: 1px;
+}
+
+.navbar__logo-options > img {
+    max-height: 67px;
+    width: auto;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: black;
+    font-weight: 600;
+}
+
+.navbar__search-cart > *:not(input) {
+    margin: 0 10px;
+}
+
+.navbar__search-cart {
+    display: flex;
+    min-width: fit-content;
+    justify-content: flex-end;
+}
+
+.navbar__search-input-desktop--show {
+    display: flex;
+    border: 2px solid gray;
+    border-radius: 30px;
+    margin: 13px 0;
+    padding-left: 10px;
+    animation: lengthen 500ms ease;
+    width: 100%;
+}
+
+.navbar__search-input-desktop--show:focus {
+    outline: none;
+}
+
+.navbar__search-input-desktop--hide {
+    display: flex;
+    border: 2px solid gray;
+    border-radius: 30px;
+    margin: 13px 0;
+    padding-left: 10px;
+    animation: shorten 300ms ease-in;
+    width: 0;
+}
+
+.navbar__search-button {
+    background-color: transparent;
+    border-color: transparent;
+    cursor: pointer;
+    border: 0;
+}
+
+.navbar__search-input {
+    display: flex;
+    flex-direction: row;
+    background-color: white;
+    border: 2px solid gray;
+    border-radius: 30px;
+    margin: 10px;
+    padding: 4px 10px;
+    justify-content: space-between;
+    width: 100%;
+    grid-column: 2 / 3;
+}
+
+.navbar__search-input > input {
+    border: none;
+    display: flex;
+    width: 100%;
+}
+
+.navbar__search-input > input:focus {
+    outline: none;
+}
+
+.navbar__search-input > button {
+    margin: 0 10px;
+}
+
+.navbar__search-input > button > span {
+    display: flex;
+    max-height: fit-content;
+}
+
+.navbar__hide {
+    display: none !important;
+    width: 0px !important;
+}
+
+.navbar__button-style {
+    background-color: transparent;
+    border-color: transparent;
+    cursor: pointer;
+    border: 0;
+}
+
+.navbar__exclusive-mobile {
+    display: none;
+}
+
+@media (max-width: 600px) {
+    .navbar__exclusive-desktop {
+        display: none;
+    }
+
+    .navbar__desktop > div {
+        justify-content: space-between;
+    }
+
+
+    /* Mobile Modifiers */
+    .navbar__exclusive-mobile {
+        display: flex;
+    }
+
+    .navbar__mobile {
+        display: flex;
+        justify-content: center;
+    }
+
+    .navbar__search-cart {
+        display: none;
+    }
+
+    .navbar__mobile > div > ul {
+        max-width: none;
+    }
+}
+
+@keyframes lengthen {
+    0% {
+        width: 0;
+    }
+
+    100% {
+        width: 100%;
+    }
+}
+
+@keyframes shorten {
+    from {
+        width: 100%;
+    }
+
+    to {
+        width: 0;
+    }
+}
