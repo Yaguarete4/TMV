@@ -17,6 +17,11 @@
     padding: 7px 15px;
 }
 
+.navbar__desktop > div > div {
+    width: 23px;
+    height: 23px;
+}
+
 .navbar__desktop::after {
     content: "";
     display: flex;
@@ -35,6 +40,11 @@
 
 .navbar__mobile--onsearch-input {
     grid-template-columns: 1fr 2fr 1fr;
+}
+
+.navbar__mobile--onsearch-mobile {
+    height: calc(100vh - 78px);
+    /* z-index: 1; */
 }
 
 .navbar__utilities {
@@ -152,6 +162,7 @@
     padding: 4px 10px;
     justify-content: space-between;
     width: 100%;
+    height: fit-content;
     grid-column: 2 / 3;
 }
 
@@ -189,6 +200,131 @@
 .navbar__exclusive-mobile {
     display: none;
 }
+
+/* Sidebar--------------------------------------------------- */
+
+.navbar__sidebar {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    z-index: 2;
+    height: 100vh;
+    width: 310px;
+    background-color: #F58634;
+    top: 0;
+    left: -100%;
+    transition: left 850ms ease;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 50px;
+    padding-bottom: 30px;
+}
+
+.navbar__sidebar.active {
+    left: 0;
+    transition: left 350ms ease;
+}
+
+.sidebar__close-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.navbar__sidebar > ul {
+    display: flex;
+    width: 100%;
+    height: fit-content;
+    flex-direction: column;
+}
+
+.navbar__sidebar > ul > li {
+    display: flex;
+    list-style: none;
+}
+
+.navbar__sidebar > ul > li > a {
+    display: flex;
+    align-items: center;
+    color: white;
+    font-size: .93rem;
+    width: 100%;
+    padding: 12px 0 12px 18%; 
+}
+
+.navbar__sidebar > ul > li > a:hover {
+    background-color: rgba(255, 255, 255, 0.16);
+}
+
+.sidebar__home {
+    margin-bottom: 30px;
+}
+
+.sidebar__home > a {
+    gap: 10px;
+}
+
+.sidebar__account {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    border: 2px solid white;
+    padding: 10px;
+    gap: 10px;
+}
+
+.sidebar__account > a {
+    display: flex;
+    color: white;
+    align-items: center;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.16);
+}
+
+.sidebar__login-button {
+    gap: 5px;
+}
+
+/* ---------------------------------------------------------- */
+
+.navbar__darken {
+    display: flex;
+    background-color: black;
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+}
+
+.navbar__darken-transition-enter{
+    opacity: 0;
+}
+
+.navbar__darken-transition-enter-active {
+    opacity: 70%;
+    transition: opacity 350ms ease;
+}
+
+.navbar__darken-transition-enter-done {
+    opacity: 70%;
+}
+
+.navbar__darken-transition-exit {
+    opacity: 70%;
+}
+
+.navbar__darken-transition-exit-active {
+    opacity: 0;
+    transition: opacity 250ms ease;
+}
+
+/* ---------------------------------------------------------- */
+
+.navbar__button-style {
+    background-color: transparent;
+    border-color: transparent;
+}
+
+/* ---------------------------------------------------------- */
 
 @media (max-width: 600px) {
     .navbar__exclusive-desktop {
