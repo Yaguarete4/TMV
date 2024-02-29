@@ -85,7 +85,7 @@ export const Navbar = () => {
                         </Link>
                     </li>
                     <li key="products">
-                        <Products />
+                        <Products mobile={mobileScreen}/>
                     </li>
                     <li>                        
                         <Link to="/cart">
@@ -169,10 +169,25 @@ export const Navbar = () => {
     );
 }
 
-const Products = () => {
+const Products = (props) => {
     const [open, setOpen] = useState(false);
+    const dropDownMenuRef = useRef(null)
 
-    const DropDownMenu = () => {
+    useEffect(() => {
+        const closeOnLostFocus = (e) => {
+            if(dropDownMenuRef.current === null) return;
+            if(!dropDownMenuRef.current.contains(e.target)) setOpen(false);
+        }
+    
+
+        window.addEventListener('mousedown', closeOnLostFocus)
+
+        return () => {
+            window.removeEventListener('mousedown', closeOnLostFocus)
+        }
+    });
+
+    const DropDownMenu = (props) => {
         const [list, setList] = useState([JSON.parse(JSON.stringify(ProductsData))]);
         const [transition, setTransition] = useState(false);
         const lastList = useRef(null);
@@ -187,7 +202,10 @@ const Products = () => {
 
         const LoopProductsData = (array) => {
             const onProductClick = (value) => {
-                if(value.dropDown.length === 0 && !value.deleteHimself) return;
+                if(value.dropDown.length === 0 && !value.deleteHimself){
+                    setOpen(prev => !prev);
+                    return;
+                };
 
                 //Crea lo que se podria llamar la nueva pestaña de la lista que se va a mostrar en el array
                 if(value.dropDown.length !== 0){
@@ -201,12 +219,14 @@ const Products = () => {
                         dropDown: []
                     })
 
+                    if(JSON.stringify(list[list.length - 1]) === JSON.stringify(listElement)) return;
+
                     setList(prev => [...prev, listElement]);
                     setTransition(true);
                 }
 
                 //Sistema para volver a la pestaña anterior
-                if(value.deleteHimself){
+                if(value.deleteHimself && list.length > 1){
                     setList(prev => prev.slice(0, -1));
                     setTransition(false);
                 }
@@ -215,16 +235,29 @@ const Products = () => {
             return (
                 array.map((value) => {
                     return (
-                        <DropDownItem to={value.URL} key={value.string} orangeBackground={value.deleteHimself || value.orangeBackground} hasDropdown={(value.dropDown.length !== 0)} leftIcon={(value.dropDown.length !== 0) ? <RightArrowIcon /> : value.deleteHimself && <LeftArrowIcon />} click={() => {onProductClick(value)}} >{value.string}</DropDownItem>
+                        <DropDownItem to={value.URL} key={value.string} orangeBackground={value.deleteHimself || value.orangeBackground} showArrowNever={(value.dropDown.length === 0) && value.orangeBackground} showArrowAlways={(value.deleteHimself) || ((value.dropDown.length > 0) && value.orangeBackground)} leftIcon={(value.deleteHimself) ? <LeftArrowIcon /> : <RightArrowIcon />} click={() => {onProductClick(value)}} >{value.string}</DropDownItem>
                     );
                 })
             );
         }
 
         const DropDownItem = (props) => {
+            const [hover, setHover] = useState(false);
+            const buttonRef = useRef(null);
+
+            useEffect(() => {
+                buttonRef.current && buttonRef.current.addEventListener('mouseleave', () => setHover(false));
+                buttonRef.current && buttonRef.current.addEventListener('mouseover', () => setHover(true));
+
+                return () => {
+                    buttonRef.current && buttonRef.current.removeEventListener('mouseleave', () => setHover(false));
+                    buttonRef.current && buttonRef.current.removeEventListener('mouseover', () => setHover(true));
+                }
+            }, [])
+
             return (
-                <Link to={props.to} className={`drop-down-menu__item ${props.orangeBackground ? 'return-item' : props.hasDropdown ? 'semiorange' : ''}`} onClick={props.click}>
-                    <span>{props.leftIcon}</span>
+                <Link ref={buttonRef} to={props.to} className={`drop-down-menu__item ${props.orangeBackground ? 'return-item' : ''}`} onClick={props.click}>
+                    <span style={((!hover && !props.showArrowAlways) || props.showArrowNever) ? {opacity: "0"} : {opacity: "1"}}>{props.leftIcon}</span>
                     {props.children}
                 </Link>
             );
@@ -264,8 +297,7 @@ const Products = () => {
         }
 
         return (
-            <div className="drop-down-menu">
-
+            <div className={`drop-down-menu ${props.mobile ? 'mobile' : ''}`}>
                 {((list.length === 1) && !lastList.current) && LoopProductsData(list[list.length - 1])}
 
                 {/* Avanzar */}
@@ -281,7 +313,7 @@ const Products = () => {
                         >
                             {LoopProductsData(list[(list.length > 1) ? (list.length - 2) : (list.length - 1)])}
                         </TransitionDiv>
-        
+
                         <TransitionDiv
                             classNames='drop-down-menu__transition'
                             transitionOn={transition}
@@ -324,14 +356,14 @@ const Products = () => {
     }
 
     return (
-        <>
-            <Link className="navbar__products" to="#" onClick={() => setOpen(!open)}>
+        <div ref={dropDownMenuRef} className="navbar__products">
+            <Link to="#" onClick={() => setOpen(!open)}>
                 <ProductsIcon />
                 PRODUCTOS
             </Link>
 
-            {open && <DropDownMenu />}
-        </>
+            {open && <DropDownMenu mobile={props.mobile}/>}
+        </div>
     );
 }
 
