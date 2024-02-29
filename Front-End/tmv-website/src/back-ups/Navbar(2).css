@@ -376,71 +376,77 @@
 
 .drop-down-menu__transition {
     width: 100%;
-    top: 2px;
 }
 
-.drop-down-menu__transition.enter-left {
-    animation: enterLeft var(--products-transition-speed) ease;
+.drop-down-menu__transition.right {
+    animation: moveRight var(--products-transition-speed) ease;
 }
 
-.drop-down-menu__transition.exit-left {
-    animation: exitLeft var(--products-transition-speed) ease;
-}
-
-.drop-down-menu__transition.enter-right {
-    animation: enterRight var(--products-transition-speed) ease;
-}
-
-.drop-down-menu__transition.exit-right {
-    animation: exitRight var(--products-transition-speed) ease;
+.drop-down-menu__transition.left {
+    animation: moveLeft var(--products-transition-speed) ease;
 }
 
 /* Transitions */
 
-@keyframes enterLeft {
+@keyframes moveRight {
     0% {
-        transform: translateX(110%);
-    }
-
-    100% {
-        transform: translateX(0%);
-    }
-}
-
-@keyframes exitLeft {
-    0% {
-        position: absolute;
         transform: translateX(0%);
     }
 
     100% {
-        position: absolute;
-        transform: translateX(-110%);
-    }
-}
-
-@keyframes enterRight {
-    0% {
-        transform: translateX(-110%);
-    }
-
-    100% {
-        transform: translateX(0%);
-    }
-}
-
-@keyframes exitRight {
-    0% {
-        position: absolute;
-        transform: translateX(0%);
-    }
-
-    100% {
-        position: absolute;
         transform: translateX(110%);
     }
 }
 
+@keyframes moveLeft {
+    0% {
+        transform: translateX(0%);
+    }
+
+    100% {
+        transform: translateX(-110%);
+    }
+}
+
+/* Transitions Right */
+
+/* .drop-down-menu__item-slide-right-enter {
+    position: absolute;
+    transform: translateX(-110%);
+}
+
+.drop-down-menu__item-slide-right-enter-active {
+    transform: translateX(0%);
+    transition: all var(--products-transition-speed) ease;
+}
+
+.drop-down-menu__item-slide-right-exit {
+    position: absolute;
+}
+
+.drop-down-menu__item-slide-right-exit-active {
+    transform: translateX(-110%);
+    transition: all var(--products-transition-speed) ease;
+} */
+
+/* Transitions Left */
+
+/* .drop-down-menu__item-slide-left-enter {
+    transform: translateX(110%);
+}
+
+.drop-down-menu__item-slide-left-enter-active {
+    transform: translateX(0%);
+    transition: all var(--products-transition-speed) ease;
+}
+
+.drop-down-menu__item-slide-left-exit {
+}
+
+.drop-down-menu__item-slide-left-exit-active {
+    transform: translateX(110%);
+    transition: all var(--products-transition-speed) ease;
+} */
 /* ---------------------------------------------------------- */
 
 .navbar__button-style {

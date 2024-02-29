@@ -175,14 +175,18 @@ const Products = () => {
     const DropDownMenu = () => {
         const [list, setList] = useState([JSON.parse(JSON.stringify(ProductsData))]);
         const [transition, setTransition] = useState(false);
-        const lastList = useRef(null);
+        const prevList = useRef({list: null, length: 0});
+
+        const slideRight = useRef(null);
+        const slideLeft = useRef(null);
 
         useEffect(() => {
             open || setList([JSON.parse(JSON.stringify(ProductsData))]);
         }, []);
 
         useEffect(() => {
-            lastList.current = list[list.length - 1];
+            //Almacena la lista anterior a la que se va agregar para ejecutar transiciones
+            prevList.current = {list: list[list.length - 1], length: list.length}
         }, [list])
 
         const LoopProductsData = (array) => {
@@ -202,13 +206,13 @@ const Products = () => {
                     })
 
                     setList(prev => [...prev, listElement]);
-                    setTransition(true);
+                    setTransition(prev => !prev);
                 }
 
                 //Sistema para volver a la pestaña anterior
                 if(value.deleteHimself){
                     setList(prev => prev.slice(0, -1));
-                    setTransition(false);
+                    setTransition(prev => !prev);
                 }
             }
 
@@ -230,95 +234,44 @@ const Products = () => {
             );
         }
 
-        const TransitionDiv = (props) => {
-            const [timeEnd, setTimeEnd] = useState(false);
-
-            const handleTransition = (transitionOn, direction, state) => {
-                if(!transitionOn) return '';
-
-                if(direction === 'left'){
-                    return (state === 'exit') ? 'exit-left' : 'enter-left';
-                }
-    
-                if(direction === 'right'){
-                    return (state === 'exit') ? 'exit-right' : 'enter-right';
-                }
-            }
-
-            const handleTimeOut = (timeout) => {
-                if(timeout < 0 || !timeout) return;
-
-                setTimeout(() => {
-                    setTimeEnd(true);
-                }, timeout)            
-            }
-
-            return (
-                <div 
-                className={`${props.classNames} ${handleTransition(props.transitionOn, props.direction, props.state)} ${timeEnd ? 'navbar__hide' : ''}`} 
-                >
-                    {props.unmountOnExit && handleTimeOut(props.timeout)}
-                    {props.children}
-                </div>
-            );
-        }
-
         return (
             <div className="drop-down-menu">
+                {/* {list.length === 1 && LoopProductsData(list[list.length - 1])} */}
 
-                {((list.length === 1) && !lastList.current) && LoopProductsData(list[list.length - 1])}
+                {/* <button onClick={() => {click.current = !click.current}}>CLICK ME</button> */}
 
-                {/* Avanzar */}
-                {(transition && list.length > 1) && 
-                    <>
-                        <TransitionDiv
-                            classNames='drop-down-menu__transition'
-                            transitionOn={transition}
-                            direction='left'
-                            state='exit'
-                            unmountOnExit
-                            timeout={250}
-                        >
-                            {LoopProductsData(list[(list.length > 1) ? (list.length - 2) : (list.length - 1)])}
-                        </TransitionDiv>
-        
-                        <TransitionDiv
-                            classNames='drop-down-menu__transition'
-                            transitionOn={transition}
-                            direction='left'
-                            state='enter'
-                            timeout={250}
-                        >
+                <div className={`drop-down-menu__transition ${transition ? 'right' : ''}`} ref={slideRight}>
+                    {LoopProductsData(list[list.length - 1])}
+                </div>
+
+                <div className={`drop-down-menu__transition ${transition ? 'right' : ''}`} ref={slideRight}>
+                    {LoopProductsData(list[list.length - 1])}
+                </div>
+
+
+                {/* <CSSTransition 
+                    nodeRef={slideRight}
+                    in={transition}
+                    unmountOnExit
+                    timeout={3000}
+                    classNames={"drop-down-menu__item-slide-right"}
+                >
+                        <div className="drop-down-menu__transition" ref={slideRight}>
+                            {LoopProductsData(list[(list.length) > 1 ? (list.length - 2) : (list.length - 1)])}
+                        </div>
+                </CSSTransition>
+
+                <CSSTransition 
+                    nodeRef={slideLeft}
+                    in={!transition}
+                    unmountOnExit
+                    timeout={3000}
+                    classNames={"drop-down-menu__item-slide-left"}
+                >
+                        <div className="drop-down-menu__transition" ref={slideLeft}>
                             {LoopProductsData(list[list.length - 1])}
-                        </TransitionDiv>
-                    </>
-                }
-
-                {/* Retroceder */}
-                {(!transition && lastList.current !== null) && 
-                    <>
-                        <TransitionDiv
-                        classNames='drop-down-menu__transition'
-                        transitionOn={!transition}
-                        direction='right'
-                        state='exit'
-                        unmountOnExit
-                        timeout={250}
-                        >
-                            {LoopProductsData(lastList.current !== null ? lastList.current : list[list.length - 1])}
-                        </TransitionDiv>
-
-                        <TransitionDiv
-                        classNames='drop-down-menu__transition'
-                        transitionOn={!transition}
-                        direction='right'
-                        state='enter'
-                        timeout={250}
-                        >
-                            {LoopProductsData(list[list.length - 1])}
-                        </TransitionDiv>
-                    </>
-                }
+                        </div>
+                </CSSTransition>      */}
             </div>
         );
     }
