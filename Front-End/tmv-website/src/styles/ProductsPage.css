@@ -1,0 +1,8 @@
+
+
+
+.items-container__item {
+    width: 200px;
+    height: 3px;
+    background-color: gray;
+}

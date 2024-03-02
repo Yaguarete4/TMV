@@ -413,7 +413,7 @@ const ProductsData = [
     },
     {
         string: "VER TODOS LOS PRODUCTOS",
-        URL: "/todo-productos",
+        URL: "/products",
         orangeBackground: true,
         dropDown: []
     }
