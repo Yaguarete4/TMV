@@ -17,6 +17,7 @@ import "../styles/Navbar.css"
 
 export const Navbar = () => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
+    const sidebarRef = useRef(null);
     const navbarDarkenRef = useRef(null);
     // when i click the search button the desktop navbar must hide only in mobile screens, and in desktop, the grid template must change
     const [mobileScreen, setMobileScreen] = useState(false);
@@ -29,9 +30,11 @@ export const Navbar = () => {
     //changes the screenWidth variable values
     useEffect(() => {
         window.addEventListener('resize', changeScreenWidth);
+        window.addEventListener('mousedown', closeSidebarOnLostFocus);
 
         return () => {
             window.removeEventListener('resize', changeScreenWidth);
+            window.removeEventListener('mousedown', closeSidebarOnLostFocus)
         }
     }, [])
 
@@ -42,6 +45,20 @@ export const Navbar = () => {
     const changeSearchBarState = () => {
         setIsSearchBarActive(prev => !prev);
     }
+    //-----------------------------------------
+
+    const closeSidebarOnLostFocus = (e) => {
+        if(sidebarRef.current === null) return;
+        setSidebarOpen((prevSidebarOpen) => {
+            if (!sidebarRef.current.contains(e.target) && prevSidebarOpen) {
+                prevSidebarOpen = false;
+            }
+    
+            // Devuelve el nuevo valor del estado
+            return prevSidebarOpen;
+        });
+    }
+
     //-----------------------------------------
     const addClass = (element, classToAdd) => {
         return element ? classToAdd : "";
@@ -126,7 +143,7 @@ export const Navbar = () => {
                 </div>
             </div>
 
-            <div className={sidebarOpen ? 'navbar__sidebar active' : 'navbar__sidebar'}>
+            <div className={sidebarOpen ? 'navbar__sidebar active' : 'navbar__sidebar'} ref={sidebarRef}>
                 <button className="navbar__button-style sidebar__close-button" onClick={() => setSidebarOpen(!sidebarOpen)}>
                     <CrossIcon />
                 </button>
