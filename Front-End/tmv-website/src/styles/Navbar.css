@@ -126,7 +126,7 @@
 }
 
 .navbar__search-cart > *:not(input) {
-    margin: 0 10px;
+    padding: 0 10px;
 }
 
 .navbar__search-cart {

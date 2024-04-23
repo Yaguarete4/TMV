@@ -406,20 +406,25 @@ const ProductsData = [
         orangeBackground: true,
         dropDown: [
             {
+                string: "TODO",
+                URL: "/hombre",
+                dropDown: []
+            },
+            {
                 string: "REMERAS",
+                URL: "/hombre/remeras",
+                dropDown: []
+            },
+            {
+                string: "MUSCULOSAS",
                 URL: "#",
                 dropDown: [
                     {
                         string: "AZUL",
                         URL: "/azul",
-                        dropDown: [] 
+                        dropDown: []
                     }
                 ]
-            },
-            {
-                string: "MUSCULOSAS",
-                URL: "/musculosas",
-                dropDown: []
             },
             {
                 string: "SHORTS",
@@ -430,7 +435,7 @@ const ProductsData = [
     },
     {
         string: "VER TODOS LOS PRODUCTOS",
-        URL: "/products",
+        URL: "/productos",
         orangeBackground: true,
         dropDown: []
     }

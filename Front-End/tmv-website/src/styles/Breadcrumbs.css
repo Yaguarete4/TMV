@@ -1,0 +1,27 @@
+.breadcrumbs {
+    display: flex;
+    flex-direction: row;
+}
+
+.breadcrumbs a {
+    text-decoration: none;
+    color: #848688;
+}
+
+.crumb::after {
+    content: "/";
+    color: #848688;
+    margin: .4rem;
+}
+
+.last-crumb > a {
+    color: #F7984D;
+}
+
+.crumb.white::after {
+    color: white;
+}
+
+.white > a {
+    color: white;
+}

@@ -1,6 +1,7 @@
 
 .products {
     display: grid;
+    padding-top: 1rem;
     width: 100vw;
     grid-template-columns: .1fr 1fr .1fr;
 }
@@ -17,6 +18,9 @@
 }
 
 .products__info > a {
+    display: flex;
+    align-items: center;
+    gap: .4rem;
     text-decoration: none;
     color: #848688;
     font-size: .9rem;
