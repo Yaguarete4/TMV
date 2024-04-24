@@ -4,9 +4,11 @@ import "../styles/Breadcrumbs.css"
 export const Breadcrumbs = (props) => {
     const whiteStyle = props.whiteStyle && true;
     const location = useLocation();
+    //Custom parameter, use the url param for the product details BreadCrumb
+    const link = props.url ? props.url : location.pathname;
 
     let currentLink = '';
-    let crumbs = location.pathname.split('/')
+    let crumbs = link.split('/')
         .filter(crumb => crumb !== '');
     
     crumbs.unshift("Inicio");
