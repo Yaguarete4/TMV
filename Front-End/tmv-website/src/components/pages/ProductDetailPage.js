@@ -1,7 +1,13 @@
 import { useParams } from "react-router-dom";
-import { Breadcrumbs } from "../Breadcrumbs";
 import { itemsData } from "../../itemsData";
 import { ProductInfo } from "../ProductInfo";
+import { Slider } from "../Slider"
+import remera from "../../remera.jpg";
+import remeraB from "../../RemeraNegra.jpg";
+import remeraO from "../../RemeraNaranja.jpg";
+import short from "../../Short.jpg";
+import { AddToCartButton } from "../AddToCartButton";
+import "../../styles/ProductDetails.css";
 
 export const ProductDetailPage = () => {
     const params = useParams();
@@ -11,9 +17,22 @@ export const ProductDetailPage = () => {
         <>
             {product
             ?
-                <div className="products">
-                    <div className="products__items">
+                <div className="p-details">
+                    <div className="p-details__item">
                         <ProductInfo categoryPath={`${product.categories}/${product.name}`} />
+
+                        <div className="p-details__info">
+                            <div className="p-details__slider">
+                                <Slider images={images}/>
+                            </div>
+
+                            <div className="p-details__text">
+                                <h2>{product.name}</h2>
+                                <h2 className="p-details__price">{`$${product.price}`}</h2>
+                                <p>{`3 cuotas de $${Math.floor(product.price / 3)} sin interes`}</p>
+                                <AddToCartButton item={product} />
+                            </div>
+                        </div>
                     </div>
                 </div>
             :
@@ -28,6 +47,8 @@ export const ProductDetailPage = () => {
 
 //Returns the object that match the param, else it will return false
 const ProductExist = (database, param) => {
-    return database.find(x => x.id == param) || false;
+    return database.find(x => x.id === parseInt(param)) || false;
 }
+
+const images = [remera, remeraB, remeraO, short, remera, short]
 

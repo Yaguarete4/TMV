@@ -2,6 +2,7 @@ import { Link } from "react-router-dom"
 import { splitCategories } from "../Category"
 import { itemsData } from "../../itemsData"
 import { ProductInfo } from "../ProductInfo"
+import { AddToCartButton } from "../AddToCartButton"
 
 import "../../styles/ProductsPage.css"
 
@@ -24,19 +25,19 @@ export const ProductsPage = (props) => {
 const ItemsContainer = (props) => {
     const items = props.categories ? filterCategories(props.categories) : itemsData;
 
-    const Item = (props) => {
+    const Item = ({item}) => {
         return (
             <div className="items-container__item">
                 <Link to="remera">
-                    <img src={props.img} alt="item"/>
+                    <img src={item.img} alt="item"/>
 
                     <div className="items-container__item-info">
-                        {props.name}
-                        <p className="items-container__price">{`${props.price}`}</p>
-                        <p className="items-container__description">{`3 cuotas sin interes de ${(props.price / 3).toString().slice(0, 5)}`}</p>     
+                        {item.name}
+                        <p className="items-container__price">{`${item.price}`}</p>
+                        <p className="items-container__description">{`3 cuotas sin interes de ${(item.price / 3).toString().slice(0, 5)}`}</p>     
                     </div>
                 </Link>
-                <button className="items-container__add-cart">AGREGAR AL CARRITO</button>
+                <AddToCartButton item={item} />
             </div>
         );
     }
@@ -46,7 +47,7 @@ const ItemsContainer = (props) => {
             {items.length === 0 && <h1>Pagina no encontrada</h1>}
 
             {items.map((value) => {
-                return <Item key={value.id} name={value.name} img={value.img} price={value.price} />
+                return <Item key={value.id} item={value} />
             })}
         </div>
     );

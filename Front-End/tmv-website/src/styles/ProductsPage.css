@@ -60,19 +60,6 @@
     color: #333333;
 }
 
-.items-container__add-cart {
-    display: flex;
-    justify-content: center;
-    width: 90%;
-    background-color: #F58634;
-    border: transparent;
-    color: white;
-    font-size: clamp(.7rem , 3vw, .9rem);
-    padding: .7em .5em;
-    margin-bottom: 1rem;
-}
-
-
 /* Smaller item-container__item for mobile */
 @media (max-width: 600px) {
     .items-container {

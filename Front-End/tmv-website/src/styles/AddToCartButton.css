@@ -1,0 +1,11 @@
+.add-to-cart-button {
+    display: flex;
+    justify-content: center;
+    width: 90%;
+    background-color: #F58634;
+    border: transparent;
+    color: white;
+    font-size: clamp(.7rem , 3vw, .9rem);
+    padding: .7em .5em;
+    margin-bottom: 1rem;
+}
