@@ -18,7 +18,7 @@
 }
 
 .navbar__desktop > div > div {
-    width: 23px;
+    width: 30px;
     height: 23px;
 }
 
@@ -358,6 +358,7 @@
     top: 132px;
     width: 100vw;
     left: 0;
+    z-index: 10;
 }
 
 .drop-down-menu > li {

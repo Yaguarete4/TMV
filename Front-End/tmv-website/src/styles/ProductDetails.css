@@ -46,6 +46,7 @@
 
 .p-details__text button {
     width: 100%;
+    font-size: 1rem;
 }
 
 @media (max-width: 1000px) {

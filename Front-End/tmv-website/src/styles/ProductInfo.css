@@ -1,5 +1,6 @@
 .products__info > h1 {
     color: #F58634;
+    font-size: clamp(1.5rem , 3vw, 2rem);;
 }
 
 .products__info > a {
@@ -9,4 +10,5 @@
     text-decoration: none;
     color: #848688;
     font-size: .9rem;
+    margin-top: 10px;
 }

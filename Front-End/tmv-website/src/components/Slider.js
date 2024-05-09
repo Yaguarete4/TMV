@@ -30,7 +30,7 @@ export const Slider = (props) => {
     return (
         <div className="slider">
             <div className="slider__main">
-                <button className="slider__button" onClick={showPrevImage}><OrangeBackArrow /></button>
+                <button className="slider__button left" onClick={showPrevImage}><OrangeBackArrow /></button>
 
                 <div className="slider__images">
                     {images.map((url, i) => {
@@ -40,14 +40,14 @@ export const Slider = (props) => {
                     })}
                 </div>
 
-                <button className="slider__button" onClick={showNextImage}><OrangeFowardArrow /></button>
+                <button className="slider__button right" onClick={showNextImage}><OrangeFowardArrow /></button>
             </div> 
 
             <div className="slider__ref-images">
                 {images.map((url, i) => {
                     return (
                         <button key={i} onClick={() => goToIndex(i)}>
-                            <img src={url} alt={"Imagen"} />
+                            <img src={url} alt={"Imagen"} style={i === imageIndex ? {"border": "2px solid #F58634"} : {}}/>
                         </button>
                     );
                 })}

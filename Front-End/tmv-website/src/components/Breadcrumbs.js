@@ -3,6 +3,8 @@ import "../styles/Breadcrumbs.css"
 
 export const Breadcrumbs = (props) => {
     const whiteStyle = props.whiteStyle && true;
+    const productDetails = props.productDetails
+
     const location = useLocation();
     //Custom parameter, use the url param for the product details BreadCrumb
     const link = props.url ? props.url : location.pathname;
@@ -19,7 +21,7 @@ export const Breadcrumbs = (props) => {
         currentLink += `/${crumb}`;
 
         return (
-            <div className={`${(index === crumbs.length - 1) ? 'last-crumb' : 'crumb'} ${whiteStyle ? 'white' : ''}`}key={crumb}>
+            <div className={`${((index === crumbs.length - 1) && !productDetails) ? 'last-crumb' : 'crumb'} ${whiteStyle ? 'white' : ''}`}key={crumb}>
                 <Link to={currentLink}>{firstToUpper(crumb)}</Link>
             </div>
         );

@@ -5,20 +5,30 @@ import { Link } from "react-router-dom";
 import "../styles/ProductInfo.css"
 
 export const ProductInfo = (props) => {
-    let title = splitCategories(props.categoryPath)
-    title = title[title.length - 1]
+    const productDetails = props.productDetails && true;
+    let title;
+
+    if(props.title) title = props.title;
+
+    else {
+        title = splitCategories(props.categoryPath)
+        title = title[title.length - 1]
+    }
 
     return (
         <div className="products__info">
-            <Breadcrumbs url={props.categoryPath}/>
+            <Breadcrumbs url={props.categoryPath} productDetails={productDetails}/>
             <h1>{firstToUpper(title)}</h1>
-            <BackToPrev url={props.categoryPath}/>
+            <BackToPrev url={props.categoryPath} productDetails={productDetails}/>
         </div>
     );
 }
 
 const BackToPrev = (props) => {
     const splitUrl = splitCategories(props.url);
+    
+    //adding item to the array so if the Back to prev is use in product details it wont go 2 pages back
+    if(props.productDetails) splitUrl.push("a")
 
     //It's the url that you will be send when you press the button
     let backURL = '';

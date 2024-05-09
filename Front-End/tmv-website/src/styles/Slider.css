@@ -62,5 +62,34 @@
 }
 
 .slider__ref-images img:hover {
-    border: 1px solid #F58634;
-} 
+    opacity: 0.8;
+}
+
+.slider__ref-images button:hover {
+    background-color: black;
+}
+
+@media (max-width: 600px) {
+    .slider__ref-images {
+        gap: 5px;
+    }
+
+    .slider__main {
+        position: relative;
+    }
+
+    .slider__button {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        z-index: 1;
+    }
+
+    .slider__button.left {
+        left: 0;
+    }
+
+    .slider__button.right {
+        right: 0;
+    }
+}

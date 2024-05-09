@@ -19,7 +19,7 @@ export const ProductDetailPage = () => {
             ?
                 <div className="p-details">
                     <div className="p-details__item">
-                        <ProductInfo categoryPath={`${product.categories}/${product.name}`} />
+                        <ProductInfo categoryPath={`${product.categories}`} title={`${product.name}`} productDetails/>
 
                         <div className="p-details__info">
                             <div className="p-details__slider">
@@ -30,7 +30,7 @@ export const ProductDetailPage = () => {
                                 <h2>{product.name}</h2>
                                 <h2 className="p-details__price">{`$${product.price}`}</h2>
                                 <p>{`3 cuotas de $${Math.floor(product.price / 3)} sin interes`}</p>
-                                <AddToCartButton item={product} />
+                                <div><AddToCartButton item={product} /></div>
                             </div>
                         </div>
                     </div>
