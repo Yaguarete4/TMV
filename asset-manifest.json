@@ -1,0 +1,30 @@
+{
+  "files": {
+    "main.css": "/TMV/static/css/main.fe80cd60.css",
+    "main.js": "/TMV/static/js/main.4255e2b4.js",
+    "static/media/remera.jpg": "/TMV/static/media/remera.923cb0b90313a49def5b.jpg",
+    "static/media/RemeraNaranja.jpg": "/TMV/static/media/RemeraNaranja.06b372f22d93f8fb1161.jpg",
+    "static/media/RemeraNegra.jpg": "/TMV/static/media/RemeraNegra.427513fb3e41ab94667e.jpg",
+    "static/media/Short.jpg": "/TMV/static/media/Short.b946da0524537a900d91.jpg",
+    "static/media/TMV.svg": "/TMV/static/media/TMV.a8f4c14e6d29413a4242a20cb32f84c0.svg",
+    "static/media/TMV-whiteIcon.svg": "/TMV/static/media/TMV-whiteIcon.fe34e46d1c0350bbd2190313efcdc5e2.svg",
+    "static/media/Cart.svg": "/TMV/static/media/Cart.b997b59956b13c428630cac667c4a48e.svg",
+    "index.html": "/TMV/index.html",
+    "static/media/WhiteBurgerMenu.svg": "/TMV/static/media/WhiteBurgerMenu.aa205b7df775657ac7d5f68127910bdd.svg",
+    "static/media/Menu.svg": "/TMV/static/media/Menu.8052d933875f9b4ac4b6a1f0bc3ce70c.svg",
+    "static/media/Lighning.svg": "/TMV/static/media/Lighning.39b6fd5886871f2356c32709e3e6d58e.svg",
+    "static/media/Products.svg": "/TMV/static/media/Products.94b2324fbc3633a251540e387af54bc0.svg",
+    "static/media/CrossIcon.svg": "/TMV/static/media/CrossIcon.8cb3bcf58004675d0d597ff9c5095c50.svg",
+    "static/media/Home.svg": "/TMV/static/media/Home.c38fa25cecc302aa69d18550b6a0104a.svg",
+    "static/media/OrangeFowardArrow.svg": "/TMV/static/media/OrangeFowardArrow.362cf0ef7250cb63a67ca6c8e8b09feb.svg",
+    "static/media/RightArrowIcon.svg": "/TMV/static/media/RightArrowIcon.60c0bf01671f3bf17b6c866c03aa9451.svg",
+    "static/media/LeftArrowIcon.svg": "/TMV/static/media/LeftArrowIcon.a0e1fe34f2b443a581fabd9d8c183801.svg",
+    "static/media/OrangeBackArrow.svg": "/TMV/static/media/OrangeBackArrow.43c4b2058e7e584c6320c70e4ba6dddd.svg",
+    "main.fe80cd60.css.map": "/TMV/static/css/main.fe80cd60.css.map",
+    "main.4255e2b4.js.map": "/TMV/static/js/main.4255e2b4.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.fe80cd60.css",
+    "static/js/main.4255e2b4.js"
+  ]
+}
